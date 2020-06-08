@@ -1,0 +1,24 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div><a href="http://dsinnovators.com/" class="navbar-brand">
+      <b>DSi</b></a></div>
+
+    <ul class="navbar-nav">
+      <li><a *ngIf="hcAuthService.isUserLoggedIn()"
+        routerLink="/home" class="nav-link">Home</a>
+      </li>
+      <li><a *ngIf="hcAuthService.isUserLoggedIn()"
+        routerLink="/shopping-list" class="nav-link">Shopping List</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+      <li><a *ngIf="!hcAuthService.isUserLoggedIn()"
+        routerLink="/login" class="nav-link">Login</a>
+      </li>
+      <li><a *ngIf="hcAuthService.isUserLoggedIn()"
+        routerLink="/logout" class="nav-link">Logout</a>
+      </li>
+    </ul>
+  </nav>
+</header>

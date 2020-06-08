@@ -1,0 +1,38 @@
+<div class="container">
+
+  <h1> Shopping List </h1>
+
+  <!--<div class="alert alert-success" *ngIf='message'>{{message}}</div>-->
+
+  <div class="container">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Priority</th>
+        <!--      <th>Update</th>-->
+        <!--      <th>Delete</th>-->
+      </tr>
+      </thead>
+      <tbody>
+      <!--   for (Todo todo: todos) {  -->
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.price | currency: 'BDT ' }}</td>
+        <td>{{ item.priority | uppercase }}</td>
+        <!--      <td><button (click)="updateTodo(todo.id)" class="btn btn-success">Update</button></td>-->
+        <!--      <td><button (click)="deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td>-->
+      </tr>
+      <!-- } -->
+      </tbody>
+
+    </table>
+
+    <!--  <div class="row">-->
+    <!--    <button (click)="addTodo()" class="btn btn-success">Add</button>-->
+    <!--  </div>-->
+
+  </div>
+
+</div>
