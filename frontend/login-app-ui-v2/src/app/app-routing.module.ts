@@ -6,6 +6,7 @@ import {ErrorComponent} from './components/error/error.component';
 import {ShoppingListComponent} from './components/shopping-list/shopping-list.component';
 import {LogoutComponent} from './components/logout/logout.component';
 import {RouteGuardService} from './services/guard/route-guard.service';
+import {ShoppingItemComponent} from './components/shopping-list/shopping-item/shopping-item.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home/:id', component: HomeComponent, canActivate: [RouteGuardService] },
   { path: 'login', component: LoginComponent },
   { path: 'shopping-list', component: ShoppingListComponent, canActivate: [RouteGuardService] },
+  { path: 'item/:id', component: ShoppingItemComponent, canActivate: [RouteGuardService] },
   { path: 'logout', component: LogoutComponent, canActivate: [RouteGuardService] },
 
   { path: '**', component: ErrorComponent }

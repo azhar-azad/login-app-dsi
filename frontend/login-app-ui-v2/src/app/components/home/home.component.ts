@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {HomeApiService} from '../../services/api/home-api.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,18 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  userId: string;
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private homeApiService: HomeApiService
   ) { }
 
   ngOnInit(): void {
-    this.route.snapshot.params['id'];
+    this.userId = this.route.snapshot.params['id'];
   }
 
+  getWelcomeMessageWithParameter() {
+
+  }
 }
