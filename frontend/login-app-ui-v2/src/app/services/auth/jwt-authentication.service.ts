@@ -13,11 +13,28 @@ export class AuthenticationBean{
 @Injectable({
   providedIn: 'root'
 })
-export class BasicAuthenticationService {
+export class JwtAuthenticationService {
 
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  executeJWTAuthenticationService(email, password) {
+
+    return this.httpClient.post<any>(
+      `${API_URL}/authenticate`, {
+        email,
+        password
+      }).pipe(
+      map(
+        data => {
+          sessionStorage.setItem(AUTHENTICATED_USER, email);
+          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);
+          return data;
+        }
+      )
+    );
+  }
 
   executeAuthenticationService(userid, password) {
 

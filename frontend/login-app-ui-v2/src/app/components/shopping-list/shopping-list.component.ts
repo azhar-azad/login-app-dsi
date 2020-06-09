@@ -3,6 +3,7 @@ import {ShoppingItem} from './ShoppingItem';
 import {ItemApiService} from '../../services/api/item-api.service';
 import {Router} from '@angular/router';
 import {BasicAuthenticationService} from '../../services/auth/basic-authentication.service';
+import {JwtAuthenticationService} from '../../services/auth/jwt-authentication.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -24,7 +25,7 @@ export class ShoppingListComponent implements OnInit {
   constructor(
     private itemApiService: ItemApiService,
     private router: Router,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
   refreshItems() {
-    const userId = this.basicAuthService.getAuthenticatedUser();
+    const userId = this.jwtAuthService.getAuthenticatedUser();
     this.itemApiService.retrieveAllItems(userId).subscribe(
       response => {
         console.log(response);
@@ -44,19 +45,19 @@ export class ShoppingListComponent implements OnInit {
   deleteItem(id: number) {
     console.log(`delete item ${id}` );
 
-    const userId = this.basicAuthService.getAuthenticatedUser();
+    const userId = this.jwtAuthService.getAuthenticatedUser();
     this.itemApiService.deleteItem(userId, id).subscribe (
       response => {
         console.log(response);
         this.message = `Delete of Item ${id} is successful!`;
         this.refreshItems();
       }
-    )
+    );
   }
 
 
   updateItem(id: number) {
-    console.log(`update ${id}`)
+    console.log(`update ${id}`);
     this.router.navigate(['item', id]);
   }
 

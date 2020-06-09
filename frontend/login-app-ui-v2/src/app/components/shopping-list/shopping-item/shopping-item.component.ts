@@ -3,6 +3,7 @@ import {ItemApiService} from '../../../services/api/item-api.service';
 import {ShoppingItem} from '../ShoppingItem';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BasicAuthenticationService} from '../../../services/auth/basic-authentication.service';
+import {JwtAuthenticationService} from '../../../services/auth/jwt-authentication.service';
 
 @Component({
   selector: 'app-shopping-item',
@@ -18,12 +19,12 @@ export class ShoppingItemComponent implements OnInit {
     private itemApiService: ItemApiService,
     private route: ActivatedRoute,
     private router: Router,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) { }
 
   ngOnInit(): void {
 
-    const userId = this.basicAuthService.getAuthenticatedUser();
+    const userId = this.jwtAuthService.getAuthenticatedUser();
 
     this.id = this.route.snapshot.params['id'];
 
@@ -39,7 +40,7 @@ export class ShoppingItemComponent implements OnInit {
   }
 
   saveItem() {
-    const userId = this.basicAuthService.getAuthenticatedUser();
+    const userId = this.jwtAuthService.getAuthenticatedUser();
 
     if (this.id === -1) {
       this.itemApiService.createItem(userId, this.item)

@@ -1,4 +1,4 @@
-package com.azad.dsi.loginv2.loginv2.basic.auth;
+package com.azad.dsi.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

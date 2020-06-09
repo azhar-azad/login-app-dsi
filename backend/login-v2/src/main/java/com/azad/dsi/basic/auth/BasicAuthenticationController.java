@@ -1,4 +1,4 @@
-package com.azad.dsi.loginv2.loginv2.basic.auth;
+package com.azad.dsi.basic.auth;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
