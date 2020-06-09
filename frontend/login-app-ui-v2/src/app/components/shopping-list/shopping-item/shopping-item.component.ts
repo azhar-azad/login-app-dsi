@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ItemApiService} from '../../../services/api/item-api.service';
 import {ShoppingItem} from '../ShoppingItem';
 import {ActivatedRoute, Router} from '@angular/router';
+import {BasicAuthenticationService} from '../../../services/auth/basic-authentication.service';
 
 @Component({
   selector: 'app-shopping-item',
@@ -16,17 +17,20 @@ export class ShoppingItemComponent implements OnInit {
   constructor(
     private itemApiService: ItemApiService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit(): void {
+
+    const userId = this.basicAuthService.getAuthenticatedUser();
 
     this.id = this.route.snapshot.params['id'];
 
     this.item = new ShoppingItem(this.id, '', 0, '');
 
     if (this.id !== -1) {
-      this.itemApiService.retrieveItem('azad@gmail.com', this.id).subscribe(
+      this.itemApiService.retrieveItem(userId, this.id).subscribe(
         response => {
           this.item = response;
         }
@@ -35,8 +39,10 @@ export class ShoppingItemComponent implements OnInit {
   }
 
   saveItem() {
+    const userId = this.basicAuthService.getAuthenticatedUser();
+
     if (this.id === -1) {
-      this.itemApiService.createItem('azad@gmail.com', this.item)
+      this.itemApiService.createItem(userId, this.item)
         .subscribe(
           data => {
             console.log(data);
@@ -44,7 +50,7 @@ export class ShoppingItemComponent implements OnInit {
           }
         );
     } else {
-      this.itemApiService.updateItem('azad@gmail.com', this.id, this.item)
+      this.itemApiService.updateItem(userId, this.id, this.item)
         .subscribe(
           data => {
             console.log(data);
