@@ -11,7 +11,7 @@
         <label>Email</label>
         <input class="form-control" type="email" #email="ngModel"
                [class.is-invalid]="email.invalid && email.touched" required
-               pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+               pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$"
                name="email" [(ngModel)]="userData.email">
 
         <div *ngIf="email.errors && (email.invalid || email.touched)">

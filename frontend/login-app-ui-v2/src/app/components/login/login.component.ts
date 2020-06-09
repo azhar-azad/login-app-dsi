@@ -34,33 +34,33 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleLogin() {
-
-    if (this.hcAuthService.authenticate(this.userData.email, this.userData.password)) {
-      console.log('Login Success');
-      this.isInvalidCred = false;
-      this.router.navigate(['home', this.userData.email]);
-    } else {
-      this.isInvalidCred = true;
-      // this.router.navigate(['greeting', this.username]);
-    }
-  }
-
-  handleBasicAuthLogin() {
-
-    this.basicAuthenticationService.executeAuthenticationService(this.userData.email, this.userData.password)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.router.navigate(['home', this.userData.email]);
-          this.isInvalidCred = false;
-        },
-        error => {
-          console.log(error);
-          this.isInvalidCred = true;
-        }
-      );
-  }
+  // handleLogin() {
+  //
+  //   if (this.hcAuthService.authenticate(this.userData.email, this.userData.password)) {
+  //     console.log('Login Success');
+  //     this.isInvalidCred = false;
+  //     this.router.navigate(['home', this.userData.email]);
+  //   } else {
+  //     this.isInvalidCred = true;
+  //     // this.router.navigate(['greeting', this.username]);
+  //   }
+  // }
+  //
+  // handleBasicAuthLogin() {
+  //
+  //   this.basicAuthenticationService.executeAuthenticationService(this.userData.email, this.userData.password)
+  //     .subscribe(
+  //       data => {
+  //         console.log(data);
+  //         this.router.navigate(['home', this.userData.email]);
+  //         this.isInvalidCred = false;
+  //       },
+  //       error => {
+  //         console.log(error);
+  //         this.isInvalidCred = true;
+  //       }
+  //     );
+  // }
 
   handleJwtAuthLogin() {
     this.jwtAuthService.executeJWTAuthenticationService(this.userData.email, this.userData.password)
@@ -68,10 +68,12 @@ export class LoginComponent implements OnInit {
         data => {
           console.log(data);
           this.router.navigate(['home', this.userData.email]);
+          // this.router.navigate(['shopping-list']);
           this.isInvalidCred = false;
         },
         error => {
           console.log(error);
+          this.router.navigate(['error']);
           this.isInvalidCred = true;
         }
       );
