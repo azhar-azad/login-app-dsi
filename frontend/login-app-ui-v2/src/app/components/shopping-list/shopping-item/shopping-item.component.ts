@@ -42,7 +42,7 @@ export class ShoppingItemComponent implements OnInit {
   saveItem() {
     const userId = this.jwtAuthService.getAuthenticatedUser();
 
-    if (this.id === -1) {
+    if (this.id == -1) {
       this.itemApiService.createItem(userId, this.item)
         .subscribe(
           data => {

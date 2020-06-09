@@ -1,8 +1,16 @@
 package com.azad.dsi.loginv2.loginv2.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Item {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	private String email;
 	private String name;
 	private double price;
 	private String priority;
@@ -11,9 +19,10 @@ public class Item {
 		super();
 	}
 
-	public Item(Long id, String name, Double price, String priority) {
+	public Item(Long id, String name, String email, Double price, String priority) {
 		super();
 		this.id = id;
+		this.email = email;
 		this.name = name;
 		this.price = price;
 		this.priority = priority;
@@ -27,6 +36,14 @@ public class Item {
 		this.id = id;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -35,11 +52,11 @@ public class Item {
 		this.name = name;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

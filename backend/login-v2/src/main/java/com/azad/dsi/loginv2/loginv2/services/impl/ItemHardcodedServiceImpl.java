@@ -15,9 +15,9 @@ public class ItemHardcodedServiceImpl implements ItemHardcodedService {
 	private static long idCounter = 0;
 	
 	static {
-		items.add(new Item(++idCounter, "Pencil", 15.0, "low"));
-		items.add(new Item(++idCounter, "Keyboard", 900.0, "low"));
-		items.add(new Item(++idCounter, "book", 200.0, "low"));
+		items.add(new Item(++idCounter, "azad@gmail.com", "Pencil", 15.0, "low"));
+		items.add(new Item(++idCounter, "azad@gmail.com", "Keyboard", 900.0, "low"));
+		items.add(new Item(++idCounter, "azad@gmail.com", "book", 200.0, "low"));
 	}
 	
 	public List<Item> findAll() {

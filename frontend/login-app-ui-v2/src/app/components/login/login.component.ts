@@ -4,6 +4,13 @@ import {HcAuthenticationService} from '../../services/auth/hc-authentication.ser
 import {BasicAuthenticationService} from '../../services/auth/basic-authentication.service';
 import {JwtAuthenticationService} from '../../services/auth/jwt-authentication.service';
 
+export class UserData {
+  constructor(
+    public email: string,
+    public password: string
+  ) {}
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,8 +18,9 @@ import {JwtAuthenticationService} from '../../services/auth/jwt-authentication.s
 })
 export class LoginComponent implements OnInit {
 
-  email = 'azad@gmail.com';
-  password = '';
+  userData: UserData = new UserData('', '');
+  // email: string;
+  // password: string;
   invalidCredMsg = 'Invalid Credentials';
   isInvalidCred = false;
 
@@ -28,10 +36,10 @@ export class LoginComponent implements OnInit {
 
   handleLogin() {
 
-    if (this.hcAuthService.authenticate(this.email, this.password)) {
+    if (this.hcAuthService.authenticate(this.userData.email, this.userData.password)) {
       console.log('Login Success');
       this.isInvalidCred = false;
-      this.router.navigate(['home', this.email]);
+      this.router.navigate(['home', this.userData.email]);
     } else {
       this.isInvalidCred = true;
       // this.router.navigate(['greeting', this.username]);
@@ -40,11 +48,11 @@ export class LoginComponent implements OnInit {
 
   handleBasicAuthLogin() {
 
-    this.basicAuthenticationService.executeAuthenticationService(this.email, this.password)
+    this.basicAuthenticationService.executeAuthenticationService(this.userData.email, this.userData.password)
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['home', this.email]);
+          this.router.navigate(['home', this.userData.email]);
           this.isInvalidCred = false;
         },
         error => {
@@ -55,18 +63,18 @@ export class LoginComponent implements OnInit {
   }
 
   handleJwtAuthLogin() {
-    this.jwtAuthService.executeJWTAuthenticationService(this.email, this.password)
+    this.jwtAuthService.executeJWTAuthenticationService(this.userData.email, this.userData.password)
       .subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['home', this.email]);
+          this.router.navigate(['home', this.userData.email]);
           this.isInvalidCred = false;
         },
         error => {
-          console.log(error)
+          console.log(error);
           this.isInvalidCred = true;
         }
-      )
+      );
   }
 
 }

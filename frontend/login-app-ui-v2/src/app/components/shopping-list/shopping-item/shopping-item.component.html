@@ -3,7 +3,7 @@
   <H1>Item</H1>
 
   <div class="container">
-    <div class="alert alert-warning" *ngIf="itemForm.dirty && itemForm.invalid">Enter valid values</div>
+    <div class="alert alert-warning" *ngIf="itemForm.dirty && itemForm.invalid">Provide all values</div>
     <div class="alert alert-warning" *ngIf="itemForm.dirty && price.invalid">Enter valid price</div>
 <!--    <div class="alert alert-warning" *ngIf="itemForm.dirty && priority.invalid">Enter atleast 5 characters in Description</div>-->
 
@@ -21,8 +21,6 @@
                [ngModel]="item.price"
                class="form-control" name="price" required="required" >
       </fieldset>
-
-      <!--               (ngModelChange)="item.price = $event"-->
 
       <fieldset class="form-group">
         <label>Priority</label>
